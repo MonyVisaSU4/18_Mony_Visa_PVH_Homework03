@@ -1,6 +1,8 @@
 import org.nocrala.tools.texttablefmt.Table;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -17,6 +19,14 @@ public class Main {
         t3.addCell("2. Salaries Employee");
         t3.addCell("3. Hourly Employee");
         t3.addCell("4. Back");
+    }
+    public static <T> List<T> convertALtoLL(List<T> aL)
+    {
+        List<T> lL = new LinkedList<>();
+        for (T t : aL) {
+            lL.add(t);
+        }
+        return lL;
     }
     public void initailValue(){
         serielId++;
@@ -267,8 +277,9 @@ public class Main {
         System.out.println("==========* Remove Employee *==========");
         System.out.print("=> Enter ID to Remove: ");
         String rm = ConsoleReadline.nextLine();
-        arrayList.remove(rm);
+        List<String> lL = convertALtoLL(arrayList);
         System.out.println("* ID: " + rm + " has removed successfully! *");
+        display();
     }
     public void update(){
         System.out.println();
@@ -303,185 +314,190 @@ public class Main {
         int index=arrayList.indexOf("Volunteer");
         int index2=arrayList.indexOf("Salaries Employee");
         int index3=arrayList.indexOf("Hourly Employee");
-        if(arrayList.get(i-1).equals("Volunteer")){
-            System.out.println("Choose one column to update: ");
-            System.out.println("1.Name \t 2.Address \t 3.Salary \t 0.Cancel");
-            System.out.print("=> Select Column Number: ");
-            int sel = Integer.parseInt(ConsoleReadline.nextLine());
-            switch (sel){
-                case 1:
-                    System.out.print("Change Name To: ");
-                    String name = ConsoleReadline.nextLine();
-                    arrayList.set(i+1,name);
-                    System.out.println("* Name has updated successfully *");
+        while (true){
+            if(arrayList.get(i-1).equals("Volunteer")){
+                System.out.println("Choose one column to update: ");
+                System.out.println("1.Name \t 2.Address \t 3.Salary \t 0.Cancel");
+                System.out.print("=> Select Column Number: ");
+                int sel = Integer.parseInt(ConsoleReadline.nextLine());
+                if(sel==0){
                     break;
-                case 2:
-                    System.out.print("Change Address To: ");
-                    String address = ConsoleReadline.nextLine();
-                    arrayList.set(i+2,address);
-                    System.out.println("* Address has updated successfully *");
-                    break;
-                case 3:
-                    System.out.print("Change Salary To: ");
-                    String salary = ConsoleReadline.nextLine();
-                    arrayList.set(i+3,salary);
-                    System.out.println("* Salary has updated successfully *");
-                    break;
-                case 0:
-                    update();
-                    break;
-                default:
-                    System.out.println("Invalid Input");
-                    break;
+                }
+                switch (sel){
+                    case 1:
+                        System.out.print("Change Name To: ");
+                        String name = ConsoleReadline.nextLine();
+                        arrayList.set(i+1,name);
+                        System.out.println("* Name has updated successfully *");
+                        break;
+                    case 2:
+                        System.out.print("Change Address To: ");
+                        String address = ConsoleReadline.nextLine();
+                        arrayList.set(i+2,address);
+                        System.out.println("* Address has updated successfully *");
+                        break;
+                    case 3:
+                        System.out.print("Change Salary To: ");
+                        String salary = ConsoleReadline.nextLine();
+                        arrayList.set(i+3,salary);
+                        System.out.println("* Salary has updated successfully *");
+                        break;
+                    case 0:
+                        update();
+                        break;
+                    default:
+                        System.out.println("Invalid Input");
+                        break;
+                }
+                System.out.println();
+                if(count4==0){
+                    t4.addCell("TYPE");
+                    t4.addCell("ID");
+                    t4.addCell("NAME");
+                    t4.addCell("ADDRESS");
+                    t4.addCell("SALARY");
+                    t4.addCell("BONUS");
+                    t4.addCell("HOUR");
+                    t4.addCell("RATE");
+                    t4.addCell("PAY");
+                }
+                count4=1;
+                t4.addCell(arrayList.get(i-1));
+                t4.addCell(arrayList.get(i));
+                t4.addCell(arrayList.get(i+1));
+                t4.addCell(arrayList.get(i+2));
+                t4.addCell(arrayList.get(i+3));
+                t4.addCell(arrayList.get(i+4));
+                t4.addCell(arrayList.get(i+5));
+                t4.addCell(arrayList.get(i+6));
+                t4.addCell(arrayList.get(i+7));
+                System.out.println(t4.render());
+                System.out.println();
             }
-            System.out.println();
-            if(count4==0){
-                t4.addCell("TYPE");
-                t4.addCell("ID");
-                t4.addCell("NAME");
-                t4.addCell("ADDRESS");
-                t4.addCell("SALARY");
-                t4.addCell("BONUS");
-                t4.addCell("HOUR");
-                t4.addCell("RATE");
-                t4.addCell("PAY");
+            else if(arrayList.get(i-1).equals("Salaries Employee")){
+                System.out.println("Choose one column to update: ");
+                System.out.println("1.Name \t 2.Address \t 3.Salary \t 4.Bonus \t 0.Cancel");
+                System.out.print("=> Select Column Number: ");
+                int sel = Integer.parseInt(ConsoleReadline.nextLine());
+                switch (sel){
+                    case 1:
+                        System.out.print("Change Name To: ");
+                        String name = ConsoleReadline.nextLine();
+                        arrayList.set(i+1,name);
+                        System.out.println("* Name has updated successfully *");
+                        break;
+                    case 2:
+                        System.out.print("Change Address To: ");
+                        String address = ConsoleReadline.nextLine();
+                        arrayList.set(i+2,address);
+                        System.out.println("* Address has updated successfully *");
+                        break;
+                    case 3:
+                        System.out.print("Change Salary To: ");
+                        String salary = ConsoleReadline.nextLine();
+                        arrayList.set(i+3,salary);
+                        System.out.println("* Salary has updated successfully *");
+                        break;
+                    case 4:
+                        System.out.print("Change Bonus To: ");
+                        String bonus = ConsoleReadline.nextLine();
+                        arrayList.set(i+4,bonus);
+                        System.out.println("* Bonus has updated successfully *");
+                        break;
+                    case 0:
+                        update();
+                        break;
+                    default:
+                        System.out.println("Invalid Input");
+                        break;
+                }
+                System.out.println();
+                if(count4==0){
+                    t4.addCell("TYPE");
+                    t4.addCell("ID");
+                    t4.addCell("NAME");
+                    t4.addCell("ADDRESS");
+                    t4.addCell("SALARY");
+                    t4.addCell("BONUS");
+                    t4.addCell("HOUR");
+                    t4.addCell("RATE");
+                    t4.addCell("PAY");
+                }
+                count4=1;
+                t4.addCell(arrayList.get(i-1));
+                t4.addCell(arrayList.get(i));
+                t4.addCell(arrayList.get(i+1));
+                t4.addCell(arrayList.get(i+2));
+                t4.addCell(arrayList.get(i+3));
+                t4.addCell(arrayList.get(i+4));
+                t4.addCell(arrayList.get(i+5));
+                t4.addCell(arrayList.get(i+6));
+                t4.addCell(arrayList.get(i+7));
+                System.out.println(t4.render());
+                System.out.println();
             }
-            count4=1;
-            t4.addCell(arrayList.get(i-1));
-            t4.addCell(arrayList.get(i));
-            t4.addCell(arrayList.get(i+1));
-            t4.addCell(arrayList.get(i+2));
-            t4.addCell(arrayList.get(i+3));
-            t4.addCell(arrayList.get(i+4));
-            t4.addCell(arrayList.get(i+5));
-            t4.addCell(arrayList.get(i+6));
-            t4.addCell(arrayList.get(i+7));
-            System.out.println(t4.render());
-            System.out.println();
-        }
-        else if(arrayList.get(i-1).equals("Salaries Employee")){
-            System.out.println("Choose one column to update: ");
-            System.out.println("1.Name \t 2.Address \t 3.Salary \t 4.Bonus \t 0.Cancel");
-            System.out.print("=> Select Column Number: ");
-            int sel = Integer.parseInt(ConsoleReadline.nextLine());
-            switch (sel){
-                case 1:
-                    System.out.print("Change Name To: ");
-                    String name = ConsoleReadline.nextLine();
-                    arrayList.set(i+1,name);
-                    System.out.println("* Name has updated successfully *");
-                    break;
-                case 2:
-                    System.out.print("Change Address To: ");
-                    String address = ConsoleReadline.nextLine();
-                    arrayList.set(i+2,address);
-                    System.out.println("* Address has updated successfully *");
-                    break;
-                case 3:
-                    System.out.print("Change Salary To: ");
-                    String salary = ConsoleReadline.nextLine();
-                    arrayList.set(i+3,salary);
-                    System.out.println("* Salary has updated successfully *");
-                    break;
-                case 4:
-                    System.out.print("Change Bonus To: ");
-                    String bonus = ConsoleReadline.nextLine();
-                    arrayList.set(i+4,bonus);
-                    System.out.println("* Bonus has updated successfully *");
-                    break;
-                case 0:
-                    update();
-                    break;
-                default:
-                    System.out.println("Invalid Input");
-                    break;
+            else{
+                System.out.println("Choose one column to update: ");
+                System.out.println("1.Name \t 2.Address \t 3.HourWorked \t 4.Rate \t 0.Cancel");
+                System.out.print("=> Select Column Number: ");
+                int sel = Integer.parseInt(ConsoleReadline.nextLine());
+                switch (sel){
+                    case 1:
+                        System.out.print("Change Name To: ");
+                        String name = ConsoleReadline.nextLine();
+                        arrayList.set(i+1,name);
+                        System.out.println("* Name has updated successfully *");
+                        break;
+                    case 2:
+                        System.out.print("Change Address To: ");
+                        String address = ConsoleReadline.nextLine();
+                        arrayList.set(i+2,address);
+                        System.out.println("* Address has updated successfully *");
+                        break;
+                    case 3:
+                        System.out.print("Change Salary To: ");
+                        String hour = ConsoleReadline.nextLine();
+                        arrayList.set(i+5,hour);
+                        System.out.println("* HourWorked has updated successfully *");
+                        break;
+                    case 4:
+                        System.out.print("Change Salary To: ");
+                        String rate = ConsoleReadline.nextLine();
+                        arrayList.set(i+6,rate);
+                        System.out.println("* Rate has updated successfully *");
+                        break;
+                    case 0:
+                        update();
+                        break;
+                    default:
+                        System.out.println("Invalid Input");
+                        break;
+                }
+                System.out.println();
+                if(count4==0){
+                    t4.addCell("TYPE");
+                    t4.addCell("ID");
+                    t4.addCell("NAME");
+                    t4.addCell("ADDRESS");
+                    t4.addCell("SALARY");
+                    t4.addCell("BONUS");
+                    t4.addCell("HOUR");
+                    t4.addCell("RATE");
+                    t4.addCell("PAY");
+                }
+                count4=1;
+                t4.addCell(arrayList.get(i-1));
+                t4.addCell(arrayList.get(i));
+                t4.addCell(arrayList.get(i+1));
+                t4.addCell(arrayList.get(i+2));
+                t4.addCell(arrayList.get(i+3));
+                t4.addCell(arrayList.get(i+4));
+                t4.addCell(arrayList.get(i+5));
+                t4.addCell(arrayList.get(i+6));
+                t4.addCell(arrayList.get(i+7));
+                System.out.println(t4.render());
+                System.out.println();
             }
-            System.out.println();
-            if(count4==0){
-                t4.addCell("TYPE");
-                t4.addCell("ID");
-                t4.addCell("NAME");
-                t4.addCell("ADDRESS");
-                t4.addCell("SALARY");
-                t4.addCell("BONUS");
-                t4.addCell("HOUR");
-                t4.addCell("RATE");
-                t4.addCell("PAY");
-            }
-            count4=1;
-            t4.addCell(arrayList.get(i-1));
-            t4.addCell(arrayList.get(i));
-            t4.addCell(arrayList.get(i+1));
-            t4.addCell(arrayList.get(i+2));
-            t4.addCell(arrayList.get(i+3));
-            t4.addCell(arrayList.get(i+4));
-            t4.addCell(arrayList.get(i+5));
-            t4.addCell(arrayList.get(i+6));
-            t4.addCell(arrayList.get(i+7));
-            System.out.println(t4.render());
-            System.out.println();
-        }
-        else{
-            System.out.println("Choose one column to update: ");
-            System.out.println("1.Name \t 2.Address \t 3.HourWorked \t 4.Rate \t 0.Cancel");
-            System.out.print("=> Select Column Number: ");
-            int sel = Integer.parseInt(ConsoleReadline.nextLine());
-            switch (sel){
-                case 1:
-                    System.out.print("Change Name To: ");
-                    String name = ConsoleReadline.nextLine();
-                    arrayList.set(i+1,name);
-                    System.out.println("* Name has updated successfully *");
-                    break;
-                case 2:
-                    System.out.print("Change Address To: ");
-                    String address = ConsoleReadline.nextLine();
-                    arrayList.set(i+2,address);
-                    System.out.println("* Address has updated successfully *");
-                    break;
-                case 3:
-                    System.out.print("Change Salary To: ");
-                    String hour = ConsoleReadline.nextLine();
-                    arrayList.set(i+5,hour);
-                    System.out.println("* HourWorked has updated successfully *");
-                    break;
-                case 4:
-                    System.out.print("Change Salary To: ");
-                    String rate = ConsoleReadline.nextLine();
-                    arrayList.set(i+6,rate);
-                    System.out.println("* Rate has updated successfully *");
-                    break;
-                case 0:
-                    update();
-                    break;
-                default:
-                    System.out.println("Invalid Input");
-                    break;
-            }
-            System.out.println();
-            if(count4==0){
-                t4.addCell("TYPE");
-                t4.addCell("ID");
-                t4.addCell("NAME");
-                t4.addCell("ADDRESS");
-                t4.addCell("SALARY");
-                t4.addCell("BONUS");
-                t4.addCell("HOUR");
-                t4.addCell("RATE");
-                t4.addCell("PAY");
-            }
-            count4=1;
-            t4.addCell(arrayList.get(i-1));
-            t4.addCell(arrayList.get(i));
-            t4.addCell(arrayList.get(i+1));
-            t4.addCell(arrayList.get(i+2));
-            t4.addCell(arrayList.get(i+3));
-            t4.addCell(arrayList.get(i+4));
-            t4.addCell(arrayList.get(i+5));
-            t4.addCell(arrayList.get(i+6));
-            t4.addCell(arrayList.get(i+7));
-            System.out.println(t4.render());
-            System.out.println();
         }
         display();
     }
