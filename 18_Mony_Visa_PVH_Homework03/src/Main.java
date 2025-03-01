@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    public int serielId=0,count=0,count1=0;
+    public int serielId=0,count=0,count1=0,count2=0;
     public Table t = new Table(1);
     public Table t1 = new Table(9);
+    public Table t2 = new Table(9);
     public Table t3 = new Table(4);
     public ArrayList<String> arrayList = new ArrayList<String>();
     public Scanner ConsoleReadline = new Scanner(System.in);
@@ -15,7 +16,6 @@ public class Main {
         t3.addCell("2. Salaries Employee");
         t3.addCell("3. Hourly Employee");
         t3.addCell("4. Back");
-        System.out.println(t3.render());
     }
     public void initailValue(){
         serielId++;
@@ -111,6 +111,7 @@ public class Main {
         t1.addCell("PAY");
     }
     public void display(){
+        System.out.println();
         if(count==0){
             initailValue();
         }
@@ -149,9 +150,14 @@ public class Main {
         }
     }
     public void insert(){
+        System.out.println();
         System.out.println("==========* Insert Employee *==========");
         System.out.println("Choose Type:");
-        choiceType();
+        if(count2==0){
+            choiceType();
+        }
+        count2=1;
+        System.out.println(t3.render());
         System.out.print("=> Enter Type Number: ");
         int typeOp = Integer.parseInt(ConsoleReadline.nextLine());
         switch (typeOp){
@@ -192,6 +198,8 @@ public class Main {
         arrayList.add("---");
         arrayList.add("---");
         arrayList.add(String.valueOf(volunteer.getSalary()));
+        System.out.println("* You add " + volunteer.name + " to type of Volunteer successfully *");
+        System.out.println();
         display();
     }
     public void hourlyEmpInsert(){
@@ -206,7 +214,7 @@ public class Main {
         hourlySalaryEmployee.setHourWorked(Integer.parseInt(ConsoleReadline.nextLine()));
         System.out.print("=> Enter Rate: ");
         hourlySalaryEmployee.setRate(Double.parseDouble(ConsoleReadline.nextLine()));
-        arrayList.add("Salaries Employee");
+        arrayList.add("Hourly Employee");
         arrayList.add(String.valueOf(serielId));
         arrayList.add(hourlySalaryEmployee.name);
         arrayList.add(hourlySalaryEmployee.address);
@@ -215,6 +223,8 @@ public class Main {
         arrayList.add(String.valueOf(hourlySalaryEmployee.getHourWorked()));
         arrayList.add(String.valueOf(hourlySalaryEmployee.getRate()));
         arrayList.add(String.valueOf(hourlySalaryEmployee.getHourWorked() * hourlySalaryEmployee.getRate()));
+        System.out.println("* You add " + hourlySalaryEmployee.name + " to type of Hourly Employee successfully *");
+        System.out.println();
         display();
     }
     public void salaryEmpInsert(){
@@ -229,7 +239,7 @@ public class Main {
         salariedEmployee.setSalary(Double.parseDouble(ConsoleReadline.nextLine()));
         System.out.print("=> Enter Bonus: ");
         salariedEmployee.setBonus(Double.parseDouble(ConsoleReadline.nextLine()));
-        arrayList.add("Hourly Employee");
+        arrayList.add("Salaries Employee");
         arrayList.add(String.valueOf(serielId));
         arrayList.add(salariedEmployee.name);
         arrayList.add(salariedEmployee.address);
@@ -238,9 +248,12 @@ public class Main {
         arrayList.add("---");
         arrayList.add("---");
         arrayList.add(String.valueOf(salariedEmployee.getSalary() + salariedEmployee.getBonus()));
+        System.out.println("* You add " + salariedEmployee.name + " to type of Salaries Employee successfully *");
+        System.out.println();
         display();
     }
     public void show(){
+        System.out.println();
         if(count1==0){
             headerTable();
         }
@@ -253,7 +266,54 @@ public class Main {
 
     }
     public void update(){
-
+        System.out.println();
+        System.out.println("==========* Update Employee *==========");
+        System.out.print("=> Enter or Search ID to Update: ");
+        int sch = Integer.parseInt(ConsoleReadline.nextLine());
+        int i = arrayList.indexOf(String.valueOf(sch));
+        System.out.println();
+        t2.addCell(arrayList.get(i-1));
+        t2.addCell(arrayList.get(i));
+        t2.addCell(arrayList.get(i+1));
+        t2.addCell(arrayList.get(i+2));
+        t2.addCell(arrayList.get(i+3));
+        t2.addCell(arrayList.get(i+4));
+        t2.addCell(arrayList.get(i+5));
+        t2.addCell(arrayList.get(i+6));
+        t2.addCell(arrayList.get(i+7));
+        System.out.println(t2.render());
+        System.out.println();
+        System.out.println("Choose one column to update: ");
+        System.out.println("1.Name \t 2.Address \t 3.Salary \t 0.Cancel");
+        System.out.print("=> Select Column Number: ");
+        int sel = Integer.parseInt(ConsoleReadline.nextLine());
+        switch (sel){
+            case 1:
+                System.out.print("Change Name To: ");
+                String name = ConsoleReadline.nextLine();
+                arrayList.set(i+1,name);
+                System.out.println("* Name has updated successfully *");
+                break;
+            case 2:
+                System.out.print("Change Address To: ");
+                String address = ConsoleReadline.nextLine();
+                arrayList.set(i+2,address);
+                System.out.println("* Address has updated successfully *");
+                break;
+            case 3:
+                System.out.print("Change Salary To: ");
+                String salary = ConsoleReadline.nextLine();
+                arrayList.set(i+3,salary);
+                System.out.println("* Salary has updated successfully *");
+                break;
+            case 0:
+                display();
+                break;
+            default:
+                System.out.println("Invalid Input");
+                break;
+        }
+        display();
     }
     public static void main(String[] args) {
         try{
