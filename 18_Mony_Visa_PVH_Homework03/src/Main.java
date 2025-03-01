@@ -20,14 +20,6 @@ public class Main {
         t3.addCell("3. Hourly Employee");
         t3.addCell("4. Back");
     }
-    public static <T> List<T> convertALtoLL(List<T> aL)
-    {
-        List<T> lL = new LinkedList<>();
-        for (T t : aL) {
-            lL.add(t);
-        }
-        return lL;
-    }
     public void initailValue(){
         serielId++;
         arrayList.add("Volunteer");
@@ -277,8 +269,21 @@ public class Main {
         System.out.println("==========* Remove Employee *==========");
         System.out.print("=> Enter ID to Remove: ");
         String rm = ConsoleReadline.nextLine();
-        List<String> lL = convertALtoLL(arrayList);
-        System.out.println("* ID: " + rm + " has removed successfully! *");
+        int index = -1;
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (arrayList.get(i).equals(rm)) {
+                index = i;
+                break;
+            }
+        }
+        if (index == -1) {
+            System.out.println("* ID: " + rm + " not found! *");
+        } else {
+            for (int i = 0; i < 9; i++) {
+                arrayList.remove(index);
+            }
+            System.out.println("* ID: " + rm + " has been removed successfully! *");
+        }
         display();
     }
     public void update(){
