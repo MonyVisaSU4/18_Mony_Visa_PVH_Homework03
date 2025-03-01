@@ -5,12 +5,12 @@ import java.util.Collection;
 import java.util.Scanner;
 
 public class Main {
+    public int serielId=0;
     public Table t = new Table(1);
     public Table t1 = new Table(9);
     public Table t3 = new Table(4);
     public Collection<String> arrayList = new ArrayList<String>();
     public Scanner ConsoleReadline = new Scanner(System.in);
-//    public Main m = new Main();
     public void choiceType(){
         t3.addCell("1. Volunteer");
         t3.addCell("2. Salaries Employee");
@@ -19,7 +19,86 @@ public class Main {
         System.out.println(t3.render());
     }
     public void initailValue(){
-
+        serielId++;
+        arrayList.add("Volunteer");
+        arrayList.add(String.valueOf(serielId));
+        arrayList.add("Mr. Kouern Doch");
+        arrayList.add("Preah Vihear");
+        arrayList.add("$999.00");
+        arrayList.add("---");
+        arrayList.add("---");
+        arrayList.add("---");
+        arrayList.add("$999.00");
+        serielId++;
+        arrayList.add("Salaries Employee");
+        arrayList.add(String.valueOf(serielId));
+        arrayList.add("Mr. Tan Dara");
+        arrayList.add("Siem Reap");
+        arrayList.add("$777.00");
+        arrayList.add("$50.00");
+        arrayList.add("---");
+        arrayList.add("---");
+        arrayList.add("$827.00");
+        serielId++;
+        arrayList.add("Hourly Employee");
+        arrayList.add(String.valueOf(serielId));
+        arrayList.add("Mr. Chea MengLim");
+        arrayList.add("Phnom Penh");
+        arrayList.add("---");
+        arrayList.add("---");
+        arrayList.add("100");
+        arrayList.add("$100");
+        arrayList.add("$10000.00");
+        serielId++;
+        arrayList.add("Hourly Employee");
+        arrayList.add(String.valueOf(serielId));
+        arrayList.add("Ms. Sopheap Tola");
+        arrayList.add("Phnom Penh");
+        arrayList.add("---");
+        arrayList.add("---");
+        arrayList.add("50");
+        arrayList.add("$40");
+        arrayList.add("$2000.00");
+        serielId++;
+        arrayList.add("Salaried Employee");
+        arrayList.add(String.valueOf(serielId));
+        arrayList.add("Mr. Vannak Chet");
+        arrayList.add("Siem Reap");
+        arrayList.add("$650.00");
+        arrayList.add("$100.00");
+        arrayList.add("---");
+        arrayList.add("---");
+        arrayList.add("$65000.00");
+        serielId++;
+        arrayList.add("Volunteer");
+        arrayList.add(String.valueOf(serielId));
+        arrayList.add("Ms. Sreyneang Keo");
+        arrayList.add("Battambang");
+        arrayList.add("$1500.00");
+        arrayList.add("---");
+        arrayList.add("---");
+        arrayList.add("---");
+        arrayList.add("$1500.00");
+        serielId++;
+        arrayList.add("Hourly Employee");
+        arrayList.add(String.valueOf(serielId));
+        arrayList.add("Mr. Dara Sok");
+        arrayList.add("Kampot");
+        arrayList.add("---");
+        arrayList.add("---");
+        arrayList.add("150");
+        arrayList.add("$15");
+        arrayList.add("$2250.00");
+        serielId++;
+        arrayList.add("Salaried Employee");
+        arrayList.add(String.valueOf(serielId));
+        arrayList.add("Ms. Sophea Ly");
+        arrayList.add("Preah Sihanouk");
+        arrayList.add("$790.00");
+        arrayList.add("$70");
+        arrayList.add("---");
+        arrayList.add("---");
+        arrayList.add("$55300.00");
     }
     public void headerTable(){
         t1.addCell("TYPE");
@@ -105,6 +184,8 @@ public class Main {
     }
     public void show(){
         headerTable();
+        arrayList.forEach(n->{t1.addCell(n);});
+        System.out.println(t1.render());
     }
     public void delete(){
 
