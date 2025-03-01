@@ -1,15 +1,14 @@
 import org.nocrala.tools.texttablefmt.Table;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Scanner;
 
 public class Main {
-    public int serielId=0;
+    public int serielId=0,count=0,count1=0;
     public Table t = new Table(1);
     public Table t1 = new Table(9);
     public Table t3 = new Table(4);
-    public Collection<String> arrayList = new ArrayList<String>();
+    public ArrayList<String> arrayList = new ArrayList<String>();
     public Scanner ConsoleReadline = new Scanner(System.in);
     public void choiceType(){
         t3.addCell("1. Volunteer");
@@ -110,19 +109,24 @@ public class Main {
         t1.addCell("HOUR");
         t1.addCell("RATE");
         t1.addCell("PAY");
-        System.out.println(t1.render());
     }
     public void display(){
-        t.addCell("STAFF MANAGEMENT SYSTEM");
-        t.addCell("1. Insert Employee");
-        t.addCell("2. Update Employee");
-        t.addCell("3. Display Employee");
-        t.addCell("4. Remove Employee");
-        t.addCell("5. Exit");
+        if(count==0){
+            initailValue();
+        }
+        if(count==0){
+            t.addCell("STAFF MANAGEMENT SYSTEM");
+            t.addCell("1. Insert Employee");
+            t.addCell("2. Update Employee");
+            t.addCell("3. Display Employee");
+            t.addCell("4. Remove Employee");
+            t.addCell("5. Exit");
+        }
+        count=1;
         System.out.println(t.render());
         System.out.println("-------------------");
         System.out.print("-> Choose an option(): ");
-        int op = ConsoleReadline.nextInt();
+        int op = Integer.parseInt(ConsoleReadline.nextLine());
         switch (op){
             case 1:
                 insert();
@@ -149,43 +153,101 @@ public class Main {
         System.out.println("Choose Type:");
         choiceType();
         System.out.print("=> Enter Type Number: ");
-        int typeOp = ConsoleReadline.nextInt();
+        int typeOp = Integer.parseInt(ConsoleReadline.nextLine());
         switch (typeOp){
             case 1:
+                volunteerInsert();
                 break;
             case 2:
+                salaryEmpInsert();
                 break;
             case 3:
+                hourlyEmpInsert();
                 break;
             case 4:
                 display();
                 break;
             default:
                 System.out.println("Invalid Input");
+                display();
                 break;
         }
     }
     public void volunteerInsert(){
+        Volunteer volunteer = new Volunteer(0,"","");
+        serielId++;
+        System.out.println("Id: " + serielId);
         System.out.print("=> Enter Name: ");
+        volunteer.name = ConsoleReadline.nextLine();
         System.out.print("=> Enter Address: ");
+        volunteer.address = ConsoleReadline.nextLine();
         System.out.print("=> Enter Salary: ");
+        volunteer.setSalary(Double.parseDouble(ConsoleReadline.nextLine()));
+        arrayList.add("Volunteer");
+        arrayList.add(String.valueOf(serielId));
+        arrayList.add(volunteer.name);
+        arrayList.add(volunteer.address);
+        arrayList.add(String.valueOf(volunteer.getSalary()));
+        arrayList.add("---");
+        arrayList.add("---");
+        arrayList.add("---");
+        arrayList.add(String.valueOf(volunteer.getSalary()));
+        display();
     }
     public void hourlyEmpInsert(){
+        HourlySalaryEmployee hourlySalaryEmployee = new HourlySalaryEmployee(0,"","",0,0.00);
+        serielId++;
+        System.out.println("Id: " + serielId);
         System.out.print("=> Enter Name: ");
+        hourlySalaryEmployee.name = ConsoleReadline.nextLine();
         System.out.print("=> Enter Address: ");
+        hourlySalaryEmployee.address = ConsoleReadline.nextLine();
         System.out.print("=> Enter HoursWorked: ");
+        hourlySalaryEmployee.setHourWorked(Integer.parseInt(ConsoleReadline.nextLine()));
         System.out.print("=> Enter Rate: ");
+        hourlySalaryEmployee.setRate(Double.parseDouble(ConsoleReadline.nextLine()));
+        arrayList.add("Salaries Employee");
+        arrayList.add(String.valueOf(serielId));
+        arrayList.add(hourlySalaryEmployee.name);
+        arrayList.add(hourlySalaryEmployee.address);
+        arrayList.add("---");
+        arrayList.add("---");
+        arrayList.add(String.valueOf(hourlySalaryEmployee.getHourWorked()));
+        arrayList.add(String.valueOf(hourlySalaryEmployee.getRate()));
+        arrayList.add(String.valueOf(hourlySalaryEmployee.getHourWorked() * hourlySalaryEmployee.getRate()));
+        display();
     }
     public void salaryEmpInsert(){
+        SalariedEmployee salariedEmployee = new SalariedEmployee(0,"","",0.00,0.00);
+        serielId++;
+        System.out.println("Id: " + serielId);
         System.out.print("=> Enter Name: ");
+        salariedEmployee.name = ConsoleReadline.nextLine();
         System.out.print("=> Enter Address: ");
+        salariedEmployee.address = ConsoleReadline.nextLine();
         System.out.print("=> Enter Salary: ");
+        salariedEmployee.setSalary(Double.parseDouble(ConsoleReadline.nextLine()));
         System.out.print("=> Enter Bonus: ");
+        salariedEmployee.setBonus(Double.parseDouble(ConsoleReadline.nextLine()));
+        arrayList.add("Hourly Employee");
+        arrayList.add(String.valueOf(serielId));
+        arrayList.add(salariedEmployee.name);
+        arrayList.add(salariedEmployee.address);
+        arrayList.add(String.valueOf(salariedEmployee.getSalary()));
+        arrayList.add(String.valueOf(salariedEmployee.getBonus()));
+        arrayList.add("---");
+        arrayList.add("---");
+        arrayList.add(String.valueOf(salariedEmployee.getSalary() + salariedEmployee.getBonus()));
+        display();
     }
     public void show(){
-        headerTable();
-        arrayList.forEach(n->{t1.addCell(n);});
+        if(count1==0){
+            headerTable();
+        }
+        arrayList.forEach(n->t1.addCell(n));
+        count1=1;
         System.out.println(t1.render());
+        display();
     }
     public void delete(){
 
@@ -194,16 +256,12 @@ public class Main {
 
     }
     public static void main(String[] args) {
-//        try{
-//            Main m1 = new Main();
-//            m1.display();
-//        }
-//        catch (Exception ex){
-//            System.out.println("Catch: " + ex);
-//        }
-        ArrayList<String> arr = new ArrayList<>();
-        arr.add("A");
-        arr.add("B");
-        arr.add("C");
+        try{
+            Main m1 = new Main();
+            m1.display();
+        }
+        catch (Exception ex){
+            System.err.println("Catch: " + ex);
+        }
     }
 }
