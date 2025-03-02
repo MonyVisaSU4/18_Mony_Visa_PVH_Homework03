@@ -280,7 +280,7 @@ public class Main {
             System.out.println("* ID: " + rm + " not found! *");
         } else {
             for (int i = 0; i < 9; i++) {
-                arrayList.remove(index);
+                arrayList.remove(index-1);
             }
             System.out.println("* ID: " + rm + " has been removed successfully! *");
         }
