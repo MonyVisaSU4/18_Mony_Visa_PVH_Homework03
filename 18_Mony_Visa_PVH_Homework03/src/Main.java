@@ -10,12 +10,7 @@ public class Main {
     public int serielId=0,count=0,count1=0,count2=0,count3=0
             ,count4=0,count5=0,count6=0,count7=0,count8=0,count9=0;
     public Table t = new Table(1);
-    public Table t1 = new Table(9);
-    public Table t2 = new Table(9);
     public Table t3 = new Table(4);
-    public Table t4 = new Table(9);
-    public Table t5 = new Table(9);
-    public Table t6 = new Table(9);
     public Table t7 = new Table(9);
     public ArrayList<String> arrayList = new ArrayList<String>();
     public Scanner ConsoleReadline = new Scanner(System.in);
@@ -106,17 +101,6 @@ public class Main {
         arrayList.add("---");
         arrayList.add("---");
         arrayList.add("$55300.00");
-    }
-    public void headerTable(){
-        t1.addCell("TYPE");
-        t1.addCell("ID");
-        t1.addCell("NAME");
-        t1.addCell("ADDRESS");
-        t1.addCell("SALARY");
-        t1.addCell("BONUS");
-        t1.addCell("HOUR");
-        t1.addCell("RATE");
-        t1.addCell("PAY");
     }
     public void display(){
         System.out.println();
@@ -261,13 +245,19 @@ public class Main {
         display();
     }
     public void show(){
-        if(count1==0){
-            headerTable();
-        }
+        Table t1 = new Table(9);
+        t1.addCell("TYPE");
+        t1.addCell("ID");
+        t1.addCell("NAME");
+        t1.addCell("ADDRESS");
+        t1.addCell("SALARY");
+        t1.addCell("BONUS");
+        t1.addCell("HOUR");
+        t1.addCell("RATE");
+        t1.addCell("PAY");
         arrayList.forEach(n->t1.addCell(n));
         System.out.println(t1.render());
         count1=1;
-        count8=1;
         display();
     }
     public void delete(){
@@ -292,6 +282,8 @@ public class Main {
         display();
     }
     public void update(){
+        Table t2 = new Table(9);
+        Table t4 = new Table(9);
         System.out.println();
         System.out.println("==========* Update Employee *==========");
         System.out.print("=> Enter or Search ID to Update: ");
@@ -301,18 +293,15 @@ public class Main {
         }
         int i = arrayList.indexOf(sch);
         System.out.println();
-        if(count3==0){
-            t2.addCell("TYPE");
-            t2.addCell("ID");
-            t2.addCell("NAME");
-            t2.addCell("ADDRESS");
-            t2.addCell("SALARY");
-            t2.addCell("BONUS");
-            t2.addCell("HOUR");
-            t2.addCell("RATE");
-            t2.addCell("PAY");
-        }
-        count3=1;
+        t2.addCell("TYPE");
+        t2.addCell("ID");
+        t2.addCell("NAME");
+        t2.addCell("ADDRESS");
+        t2.addCell("SALARY");
+        t2.addCell("BONUS");
+        t2.addCell("HOUR");
+        t2.addCell("RATE");
+        t2.addCell("PAY");
         t2.addCell(arrayList.get(i-1));
         t2.addCell(arrayList.get(i));
         t2.addCell(arrayList.get(i+1));
@@ -363,17 +352,15 @@ public class Main {
                         break;
                 }
                 System.out.println();
-                if(count4==0){
-                    t4.addCell("TYPE");
-                    t4.addCell("ID");
-                    t4.addCell("NAME");
-                    t4.addCell("ADDRESS");
-                    t4.addCell("SALARY");
-                    t4.addCell("BONUS");
-                    t4.addCell("HOUR");
-                    t4.addCell("RATE");
-                    t4.addCell("PAY");
-                }
+                t4.addCell("TYPE");
+                t4.addCell("ID");
+                t4.addCell("NAME");
+                t4.addCell("ADDRESS");
+                t4.addCell("SALARY");
+                t4.addCell("BONUS");
+                t4.addCell("HOUR");
+                t4.addCell("RATE");
+                t4.addCell("PAY");
                 count4=1;
                 t4.addCell(arrayList.get(i-1));
                 t4.addCell(arrayList.get(i));
@@ -428,27 +415,25 @@ public class Main {
                         break;
                 }
                 System.out.println();
-                if(count4==0){
-                    t4.addCell("TYPE");
-                    t4.addCell("ID");
-                    t4.addCell("NAME");
-                    t4.addCell("ADDRESS");
-                    t4.addCell("SALARY");
-                    t4.addCell("BONUS");
-                    t4.addCell("HOUR");
-                    t4.addCell("RATE");
-                    t4.addCell("PAY");
-                }
-                count4=1;
-                t4.addCell(arrayList.get(i-1));
-                t4.addCell(arrayList.get(i));
-                t4.addCell(arrayList.get(i+1));
-                t4.addCell(arrayList.get(i+2));
-                t4.addCell(arrayList.get(i+3));
-                t4.addCell(arrayList.get(i+4));
-                t4.addCell(arrayList.get(i+5));
-                t4.addCell(arrayList.get(i+6));
-                t4.addCell(arrayList.get(i+7));
+                Table t5 = new Table(9);
+                t5.addCell("TYPE");
+                t5.addCell("ID");
+                t5.addCell("NAME");
+                t5.addCell("ADDRESS");
+                t5.addCell("SALARY");
+                t5.addCell("BONUS");
+                t5.addCell("HOUR");
+                t5.addCell("RATE");
+                t5.addCell("PAY");
+                t5.addCell(arrayList.get(i-1));
+                t5.addCell(arrayList.get(i));
+                t5.addCell(arrayList.get(i+1));
+                t5.addCell(arrayList.get(i+2));
+                t5.addCell(arrayList.get(i+3));
+                t5.addCell(arrayList.get(i+4));
+                t5.addCell(arrayList.get(i+5));
+                t5.addCell(arrayList.get(i+6));
+                t5.addCell(arrayList.get(i+7));
                 System.out.println(t4.render());
                 System.out.println();
             }
@@ -493,27 +478,26 @@ public class Main {
                         break;
                 }
                 System.out.println();
-                if(count4==0){
-                    t4.addCell("TYPE");
-                    t4.addCell("ID");
-                    t4.addCell("NAME");
-                    t4.addCell("ADDRESS");
-                    t4.addCell("SALARY");
-                    t4.addCell("BONUS");
-                    t4.addCell("HOUR");
-                    t4.addCell("RATE");
-                    t4.addCell("PAY");
-                }
+                Table t6 = new Table(9);
+                t6.addCell("TYPE");
+                t6.addCell("ID");
+                t6.addCell("NAME");
+                t6.addCell("ADDRESS");
+                t6.addCell("SALARY");
+                t6.addCell("BONUS");
+                t6.addCell("HOUR");
+                t6.addCell("RATE");
+                t6.addCell("PAY");
                 count4=1;
-                t4.addCell(arrayList.get(i-1));
-                t4.addCell(arrayList.get(i));
-                t4.addCell(arrayList.get(i+1));
-                t4.addCell(arrayList.get(i+2));
-                t4.addCell(arrayList.get(i+3));
-                t4.addCell(arrayList.get(i+4));
-                t4.addCell(arrayList.get(i+5));
-                t4.addCell(arrayList.get(i+6));
-                t4.addCell(arrayList.get(i+7));
+                t6.addCell(arrayList.get(i-1));
+                t6.addCell(arrayList.get(i));
+                t6.addCell(arrayList.get(i+1));
+                t6.addCell(arrayList.get(i+2));
+                t6.addCell(arrayList.get(i+3));
+                t6.addCell(arrayList.get(i+4));
+                t6.addCell(arrayList.get(i+5));
+                t6.addCell(arrayList.get(i+6));
+                t6.addCell(arrayList.get(i+7));
                 System.out.println(t4.render());
                 System.out.println();
             }
