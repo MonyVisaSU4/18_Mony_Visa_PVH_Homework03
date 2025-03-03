@@ -1,3 +1,4 @@
+import dnl.utils.text.table.TextTable;
 import org.nocrala.tools.texttablefmt.Table;
 
 import java.util.ArrayList;
@@ -6,7 +7,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public int serielId=0,count=0,count1=0,count2=0,count3=0,count4=0,count5=0,count6=0,count7=0;
+    public int serielId=0,count=0,count1=0,count2=0,count3=0
+            ,count4=0,count5=0,count6=0,count7=0,count8=0,count9=0;
     public Table t = new Table(1);
     public Table t1 = new Table(9);
     public Table t2 = new Table(9);
@@ -259,105 +261,13 @@ public class Main {
         display();
     }
     public void show(){
-        System.out.println();
-        System.out.println("Do you want to order all or specific type: ");
-        System.out.println("1. Show all \t 2. Specific Type");
-        System.out.print("Choose one: ");
-        int ch = Integer.parseInt(ConsoleReadline.nextLine());
-        switch (ch){
-            case 1:
-                if(count1==0){
-                    headerTable();
-                }
-                arrayList.forEach(n->t1.addCell(n));
-                count1=1;
-                System.out.println(t1.render());
-                break;
-            case 2:
-                System.out.println();
-                System.out.println("Choose one of these Type: ");
-                System.out.println("1. Volunteer \t 2. Salaried Employee \t 3. HourlySalary Employee \t 4. Cancel");
-                System.out.print("Please type: ");
-                int ty = Integer.parseInt(ConsoleReadline.nextLine());
-                switch (ty){
-                    case 1:
-                        if(count5==0){
-                            t5.addCell("TYPE");
-                            t5.addCell("ID");
-                            t5.addCell("NAME");
-                            t5.addCell("ADDRESS");
-                            t5.addCell("SALARY");
-                            t5.addCell("BONUS");
-                            t5.addCell("HOUR");
-                            t5.addCell("RATE");
-                            t5.addCell("PAY");
-                        }
-                        count5=1;
-                        for(int u=0;u<arrayList.size();u++){
-                            if(arrayList.get(u).equals("Volunteer")){
-                                for (int c=u;c<u+9;c++){
-                                    t5.addCell(arrayList.get(c));
-                                }
-                            }
-                        }
-                        System.out.println(t5.render());
-                        break;
-                    case 2:
-                        if(count6==0){
-                            t6.addCell("TYPE");
-                            t6.addCell("ID");
-                            t6.addCell("NAME");
-                            t6.addCell("ADDRESS");
-                            t6.addCell("SALARY");
-                            t6.addCell("BONUS");
-                            t6.addCell("HOUR");
-                            t6.addCell("RATE");
-                            t6.addCell("PAY");
-                        }
-                        count5=1;
-                        for(int u=0;u<arrayList.size();u++){
-                            if(arrayList.get(u).equals("Salaries Employee")){
-                                for (int c=u;c<u+9;c++){
-                                    t6.addCell(arrayList.get(c));
-                                }
-                            }
-                        }
-                        System.out.println(t6.render());
-                        break;
-                    case 3:
-                        if(count7==0){
-                            t7.addCell("TYPE");
-                            t7.addCell("ID");
-                            t7.addCell("NAME");
-                            t7.addCell("ADDRESS");
-                            t7.addCell("SALARY");
-                            t7.addCell("BONUS");
-                            t7.addCell("HOUR");
-                            t7.addCell("RATE");
-                            t7.addCell("PAY");
-                        }
-                        count5=1;
-                        for(int u=0;u<arrayList.size();u++){
-                            if(arrayList.get(u).equals("Hourly Employee")){
-                                for (int c=u;c<u+9;c++){
-                                    t7.addCell(arrayList.get(c));
-                                }
-                            }
-                        }
-                        System.out.println(t7.render());
-                        break;
-                    case 4:
-                        show();
-                        break;
-                    default:
-                        System.out.println("Invalid Input");
-                        break;
-                }
-                break;
-            default:
-                System.out.println("Invalid Input");
-                break;
+        if(count1==0){
+            headerTable();
         }
+        arrayList.forEach(n->t1.addCell(n));
+        System.out.println(t1.render());
+        count1=1;
+        count8=1;
         display();
     }
     public void delete(){
@@ -482,6 +392,9 @@ public class Main {
                 System.out.println("1.Name \t 2.Address \t 3.Salary \t 4.Bonus \t 0.Cancel");
                 System.out.print("=> Select Column Number: ");
                 int sel = Integer.parseInt(ConsoleReadline.nextLine());
+                if(sel==0){
+                    break;
+                }
                 switch (sel){
                     case 1:
                         System.out.print("Change Name To: ");
@@ -544,6 +457,9 @@ public class Main {
                 System.out.println("1.Name \t 2.Address \t 3.HourWorked \t 4.Rate \t 0.Cancel");
                 System.out.print("=> Select Column Number: ");
                 int sel = Integer.parseInt(ConsoleReadline.nextLine());
+                if(sel==0){
+                    break;
+                }
                 switch (sel){
                     case 1:
                         System.out.print("Change Name To: ");
