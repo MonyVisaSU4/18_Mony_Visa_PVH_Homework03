@@ -385,8 +385,11 @@ public class Main {
         System.out.println();
         System.out.println("==========* Update Employee *==========");
         System.out.print("=> Enter or Search ID to Update: ");
-        int sch = Integer.parseInt(ConsoleReadline.nextLine());
-        int i = arrayList.indexOf(String.valueOf(sch));
+        String sch = ConsoleReadline.nextLine();
+        if(sch.isEmpty()){
+            display();
+        }
+        int i = arrayList.indexOf(sch);
         System.out.println();
         if(count3==0){
             t2.addCell("TYPE");
